@@ -1,53 +1,35 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { Link, Tabs } from 'expo-router'
+import { CalendarDays, CalendarPlus, UserIcon } from 'lucide-react-native'
 import { Pressable, useColorScheme } from 'react-native'
-
-import Colors from '../../constants/Colors'
-
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name']
-  color: string
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />
-}
-
 export default function TabLayout() {
   const colorScheme = useColorScheme()
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: colorScheme === 'dark' ? '#fff' : '#000',
       }}>
       <Tabs.Screen
         name="index"
         options={{
           headerRight: () => (
-            <Link href="/modal" asChild>
+            <Link href="/login" asChild>
               <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
+                {({ pressed }) => <UserIcon size={20} strokeWidth={2.5} className="mr-4" />}
               </Pressable>
             </Link>
           ),
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          title: 'Tab One',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <CalendarPlus color={color} />,
+          title: 'Create',
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="plans"
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          title: 'Tab Two',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <CalendarDays name="calendar" color={color} />,
+          title: 'My plans',
         }}
       />
     </Tabs>

@@ -1,31 +1,15 @@
-import { StyleSheet } from 'react-native'
+import { Text, View } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-import EditScreenInfo from '../../components/EditScreenInfo'
-import { Text, View } from '../../components/Themed'
-
-export default function TabOneScreen() {
+export default function IndexScreen() {
+  const insets = useSafeAreaInsets()
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+    <View className="flex-1" style={{ paddingTop: insets.top }}>
+      <View className="flex items-center m-4">
+        <Text className="font-bold text-3xl">Start new plans</Text>
+        <Text className="text-base">Start by creating a new group</Text>
+      </View>
+      <View />
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-  },
-  separator: {
-    height: 1,
-    marginVertical: 30,
-    width: '80%',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-})

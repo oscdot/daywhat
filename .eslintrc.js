@@ -3,7 +3,6 @@ module.exports = {
     'universe/native',
     'universe/shared/typescript-analysis',
     'plugin:prettier/recommended',
-    'plugin:@typescript-eslint/recommended',
   ],
   overrides: [
     {
@@ -12,7 +11,14 @@ module.exports = {
         project: './tsconfig.json',
       },
     },
+    {
+      files: ['*.config.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
   ],
+  parser: '@typescript-eslint/parser',
   plugins: ['perfectionist'],
   root: true,
   rules: {
