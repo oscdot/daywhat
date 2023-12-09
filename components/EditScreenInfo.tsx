@@ -1,11 +1,10 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
+import React from 'react'
+import { StyleSheet } from 'react-native'
 
-import Colors from '../constants/Colors';
-import { ExternalLink } from './ExternalLink';
-import { MonoText } from './StyledText';
-import { Text, View } from './Themed';
-
+import { ExternalLink } from './ExternalLink'
+import { MonoText } from './StyledText'
+import { Text, View } from './Themed'
+import Colors from '../constants/Colors'
 
 export default function EditScreenInfo({ path }: { path: string }) {
   return (
@@ -43,20 +42,17 @@ export default function EditScreenInfo({ path }: { path: string }) {
         </ExternalLink>
       </View>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
   codeHighlightContainer: {
     borderRadius: 3,
     paddingHorizontal: 4,
+  },
+  getStartedContainer: {
+    alignItems: 'center',
+    marginHorizontal: 50,
   },
   getStartedText: {
     fontSize: 17,
@@ -64,9 +60,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   helpContainer: {
-    marginTop: 15,
-    marginHorizontal: 20,
     alignItems: 'center',
+    marginHorizontal: 20,
+    marginTop: 15,
   },
   helpLink: {
     paddingVertical: 15,
@@ -74,4 +70,7 @@ const styles = StyleSheet.create({
   helpLinkText: {
     textAlign: 'center',
   },
-});
+  homeScreenFilename: {
+    marginVertical: 7,
+  },
+})
