@@ -1,9 +1,16 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
+import { ConvexProvider, ConvexReactClient } from 'convex/react'
 import { useFonts } from 'expo-font'
 import { SplashScreen, Stack } from 'expo-router'
 import { useEffect } from 'react'
-import { useColorScheme } from 'react-native'
+import { ActivityIndicator, View, useColorScheme } from 'react-native'
+
+import LoginForm from './login'
+
+import { SessionProvider } from '@/components/providers/session-provider'
+import { api } from '@/convex/_generated/api'
+import { useQuery } from '@/lib/usingSession'
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -24,6 +31,11 @@ export default function RootLayout() {
     ...FontAwesome.font,
   })
 
+  const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL, {
+    // We need to disable this to be compatible with React Native
+    unsavedChangesWarning: false,
+  })
+
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
     if (error) throw error
@@ -35,21 +47,41 @@ export default function RootLayout() {
     }
   }, [loaded])
 
-  if (!loaded) {
-    return null
-  }
+  if (!loaded) return null
 
-  return <RootLayoutNav />
+  return (
+    <SessionProvider>
+      <ConvexProvider client={convex}>
+        <RootLayoutNav />
+      </ConvexProvider>
+    </SessionProvider>
+  )
 }
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme()
 
+  const user = useQuery(api.users.get, {})
+
+  if (user === undefined)
+    return (
+      <View className="flex-1 items-center justify-center">
+        <ActivityIndicator size="large" />
+      </View>
+    )
+
+  if (user === null)
+    return (
+      <View className="flex-1">
+        <LoginForm />
+      </View>
+    )
+
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="login" options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>
   )

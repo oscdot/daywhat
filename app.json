@@ -15,7 +15,11 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.oneguylabs.whatday"
+      "bundleIdentifier": "com.oneguylabs.whatday",
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "runtimeVersion": "16.4"
     },
     "android": {
       "adaptiveIcon": {
@@ -30,7 +34,8 @@
     },
     "plugins": ["expo-router"],
     "experiments": {
-      "typedRoutes": true
+      "typedRoutes": true,
+      "tsconfigPaths": true
     },
     "extra": {
       "router": {
