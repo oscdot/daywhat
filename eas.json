@@ -1,19 +1,28 @@
 {
   "cli": {
-    "version": ">= 5.9.1"
+    "version": ">= 5.9.1",
+    "appVersionSource": "local"
   },
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_CONVEX_URL": "https://disciplined-porcupine-786.convex.cloud"
+      }
     },
     "preview": {
       "distribution": "internal",
       "env": {
-        "EXPO_PUBLIC_CONVEX_URL": "https://flexible-labrador-992.convex.cloud"
+        "EXPO_PUBLIC_CONVEX_URL": "https://disciplined-porcupine-786.convex.cloud"
       }
     },
-    "production": {}
+    "production": {
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_CONVEX_URL": "https://disciplined-porcupine-786.convex.cloud"
+      }
+    }
   },
   "submit": {
     "production": {}

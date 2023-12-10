@@ -45,7 +45,7 @@ export default function LoginForm() {
           <View className="py-4">
             <Text className="font-bold tracking-tighter text-center text-3xl">Welcome to</Text>
             <Text className="font-black tracking-tighter text-center text-4xl uppercase">
-              WhatDay
+              Daywhat
             </Text>
           </View>
           <Text className="text-lg text-center font-semibold">
